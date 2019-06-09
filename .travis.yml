@@ -4,9 +4,9 @@ services:
   - docker
 
 before_install:
-  - docker build -t johnbchu/docker-react -f Dockerfile.dev .
+  - docker build -t docker-react -f Dockerfile.dev .
 
 script:
-  # the new switches "-- --coverage" ensure the Node returns after 
+  # the new switch "-- --coverage" ensures Node returns after 
   # running all tests without waiting for user input 
-  - docker run johnbchu/docker-react CI=true npm test -- --coverage
+  - docker run ocker-react npm run test -- --coverage
