@@ -1,0 +1,12 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t johnbchu/docker-react -f Dockerfile.dev .
+
+script:
+  # the new switches "-- --coverage" ensure the Node returns after 
+  # running all tests without waiting for user input 
+  - docker run johnbchu/docker-react npm run test -- --coverage
