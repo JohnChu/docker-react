@@ -1,0 +1,29 @@
+# docker-compose -f docker-compose-dev.yml up --build
+version: '3'
+services:
+  # container 1
+  web:
+    build:
+      # context refers to the root folder
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      # use node_modules inside the container
+      - /usr/app/node_modules
+      # map the app folder in the container to use the host data
+      - .:/usr/app
+
+  # container 2
+  tests:
+    build:
+      # context refers to the root folder
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      # use node_modules inside the container
+      - /usr/app/node_modules
+      # map the app folder in the container to use the host data
+      - .:/usr/app
+    command: ["npm", "run", "test"]

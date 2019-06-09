@@ -1,0 +1,16 @@
+FROM node:alpine
+
+WORKDIR '/usr/app'
+
+COPY package.json .
+
+RUN npm install
+
+# dependencies missing from node image
+RUN npm install -gd express-generator
+RUN npm install --save express
+
+# Default command
+# no need to copy source if volume mapping is setup
+COPY ./ ./
+CMD ["npm", "run", "start"]
