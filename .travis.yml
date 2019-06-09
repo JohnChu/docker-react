@@ -9,4 +9,4 @@ before_install:
 script:
   # the new switch "-- --coverage" ensures Node returns after 
   # running all tests without waiting for user input 
-  - docker run docker-react npm run test -- --coverage
+  - docker run docker-react -e CI=true npm run test -- --coverage
