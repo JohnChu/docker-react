@@ -3,7 +3,7 @@ FROM node:alpine as Build_Phase
 
 WORKDIR '/usr/app'
 
-COPY package.json .
+COPY package.json ./
 
 RUN npm install
 
@@ -12,7 +12,7 @@ RUN npm install -gd express-generator
 RUN npm install --save express
 
 # In production environment, copy all source files
-COPY . .
+COPY ./ ./
 
 RUN npm run build
 
