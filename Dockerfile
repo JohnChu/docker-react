@@ -19,7 +19,8 @@ RUN npm run build
 # Define the Run Phase
 # For a complete list of available public docker image, see hub.docker.com
 FROM nginx
-
+# This is important for Elastic Beanstalk to open for incoming traffic
+EXPOSE 80
 COPY --from=Build_Phase /usr/app/build /usr/share/nginx/html
 
 # Run is automatically part of the container
