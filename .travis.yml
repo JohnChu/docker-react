@@ -10,3 +10,17 @@ script:
   # the new switch "-- --coverage" ensures Node returns after 
   # running all tests without waiting for user input 
   - docker run docker-react -e CI=true npm run test -- --coverage
+
+deploy: 
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "docker-react"
+  env: "DockerReact-env"
+  # S3 bucket is automatically created by Beanstalk
+  bucket_name: "elasticbeanstalk-us-west-2-123991670953"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
